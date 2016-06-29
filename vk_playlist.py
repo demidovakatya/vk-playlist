@@ -6,6 +6,7 @@ Output: csv.
 import requests
 import os
 import csv
+from datetime import datetime
 
 
 def get_url(token, user_id):
@@ -19,7 +20,9 @@ def get_tracklist(token, user_id):
     return r.json()['response']
 
 def save_tracklist_to_csv(tracklist):
-    output_file = open('output.csv', 'w', newline='')
+    filename = os.path.join(".", 'output_' + \
+                            (datetime.now().strftime("%Y%m%d_%H%M%S") + ".csv"))
+    output_file = open(filename, 'w', newline='')
     output_writer = csv.writer(output_file)
 
     for i, track in enumerate(tracklist):
@@ -34,7 +37,7 @@ def save_tracklist_to_csv(tracklist):
 
 if __name__ == '__main__':
     user_id = input("ID: ")
-    token = os.getenv('TOKEN')
+    token = os.getenv('VK_TOKEN')
 
 
     tracklist = get_tracklist(token, user_id)
