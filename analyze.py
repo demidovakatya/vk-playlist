@@ -6,6 +6,7 @@ Output: ???
 
 import os
 import pandas as pd
+import numpy as np
 
 # input_filename = 'output.csv'
 list_of_csvs = [] # get the names of all csvs in the current dir
@@ -57,3 +58,7 @@ def analyze_artists(df = df):
         for i in range(len(artists)):
             print("{} – {} tracks".format(artists.iloc[i][0], 
                                         artists.iloc[i][1]))
+
+
+if __name__ == '__main__':
+    analyze_artists()
